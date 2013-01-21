@@ -1,0 +1,31 @@
+{
+  "name": "stanlee-tinyproxy",
+  "author": "Johan Lyheden \u003cjohan@lyheden.com\u003e",
+  "description": "",
+  "license": "",
+  "project_page": "",
+  "source": "",
+  "summary": "",
+  "version": "0.0.1",
+  "checksums": {
+    "Modulefile": "4676173f0ef48e3ce46d59559dc0808d",
+    "README.markdown": "85fc94e2fcb8c86cc2d14079bf07b96d",
+    "Rakefile": "f37e6131fe7de9a49b09d31596f5fbf1",
+    "manifests/header.pp": "a7c2b3d5e348a88d02c517e1fac8903a",
+    "manifests/init.pp": "22bc9e3fbe6428ced5d7c7d58489c20a",
+    "manifests/noupstream.pp": "78646dbbb406b8c990168c23ac08586f",
+    "manifests/params.pp": "a9698b5fb8cf296f1062630fb5197ed6",
+    "manifests/reversepath.pp": "30b233f68cea59be435b034571d36d93",
+    "manifests/upstream.pp": "7a5b3447278a86af64e5ba5dc20f1453",
+    "spec/spec.opts": "a600ded995d948e393fbe2320ba8e51c",
+    "spec/spec_helper.rb": "3ea886dd135e120afa31e0aab12e85b0",
+    "templates/tinyproxy.conf.erb": "9845bc4c96ff300354650a523953e5b4",
+    "tests/init.pp": "e6023b305bd69adc4d668e843e08be14"
+  },
+  "dependencies": [
+    {
+      "name": "ripienaar/concat",
+      "version_requirement": "\u003d\u003d0.2.0"
+    }
+  ]
+}
