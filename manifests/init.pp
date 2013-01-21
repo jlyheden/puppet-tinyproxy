@@ -183,7 +183,8 @@ class tinyproxy ( $ensure = present,
         enable      => true,
         hasstatus   => $tinyproxy::params::hasstatus,
         hasrestart  => $tinyproxy::params::hasrestart,
-        require     => Package[$package]
+        require     => Package[$package],
+        subscribe   => Concat[$tinyproxy::params::configfile]
       }
     }
     absent: {
@@ -203,7 +204,6 @@ class tinyproxy ( $ensure = present,
     group   => root,
     mode    => '0644',
     require => Package[$package],
-    notify  => Service[$service]
   }
   concat::fragment { 'tinyproxy_main':
     target  => $tinyproxy::params::configfile,
