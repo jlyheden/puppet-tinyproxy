@@ -23,6 +23,7 @@
 define tinyproxy::noupstream ( $ensure = present, $match ) {
   include tinyproxy::params
   concat::fragment { "tinyproxy_noupstream_${name}":
+    target  => $tinyproxy::params::configfile,
     ensure  => $ensure,
     content => "no upstream ${match}\n",
     order   => 40

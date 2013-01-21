@@ -23,6 +23,7 @@
 define tinyproxy::header ( $ensure = present, $value ) {
   include tinyproxy::params
   concat::fragment { "tinyproxy_header_${name}":
+    target  => $tinyproxy::params::configfile,
     ensure  => $ensure,
     content => "AddHeader \"${name}\" \"${value}\"\n",
     order   => 20

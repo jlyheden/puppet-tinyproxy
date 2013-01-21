@@ -14,13 +14,14 @@ class tinyproxy::params {
       $package = 'tinyproxy'
       $service = 'tinyproxy'
       $hasstatus = false
+      $hasrestart = true
       $user = 'nobody'
       $group = 'nogroup'
       $port = 3128
       $listen = undef
       $bind = undef
       $bindsame = undef
-      $timeout = 600
+      $connection_timeout = 600
       $allow = []
       $errorfiles = {}
       $defaulterrorfile= '/usr/share/tinyproxy/default.html'
@@ -28,7 +29,7 @@ class tinyproxy::params {
       $statfile = '/usr/share/tinyproxy/stats.html'
       $logfile = '/var/log/tinyproxy/tinyproxy.log'
       $syslog = undef
-      $loglevel = 'Info'
+      $log_level = 'Info'
       $pidfile = '/var/run/tinyproxy/tinyproxy.pid'
       $xtinyproxy = undef
       $maxclients = 100

@@ -32,6 +32,7 @@ define tinyproxy::upstream ( $ensure = present, $proxy, $match = undef ) {
     default => "upstream ${proxy} \"${match}\"\n"
   }
   concat::fragment { "tinyproxy_upstream_${name}":
+    target  => $tinyproxy::params::configfile,
     ensure  => $ensure,
     content => $content,
     order   => 30

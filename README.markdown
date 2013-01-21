@@ -18,12 +18,12 @@ You can install, configure and start the service simply by including the class
 include tinyproxy
 </pre>
 
-The module supports a bunch of parameters, check the init.pp for more details, however a overriden parameter could look something like:
+The module supports a bunch of parameters, check the init.pp for more details, however here's an example on how to override a few parameters:
 <pre>
 class { 'tinyproxy':
-    listen  => '127.0.0.1',
-    port    => 8080,
-    timeout => 60
+    listen             => '127.0.0.1',
+    port               => 8080,
+    connection_timeout => 60
 }
 </pre>
 

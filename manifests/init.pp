@@ -34,7 +34,7 @@
 # [*bindsame*]
 #   Optional. Boolean if same interface should be used for outgoing as incoming
 #
-# [*timeout*]
+# [*connection_timeout*]
 #   Optional. Proxy timeout in seconds
 #
 # [*allow*]
@@ -135,7 +135,7 @@ class tinyproxy ( $ensure = present,
                   $listen = $tinyproxy::params::listen,
                   $bind = $tinyproxy::params::bind,
                   $bindsame = $tinyproxy::params::bindsame,
-                  $timeout = $tinyproxy::params::timeout,
+                  $connection_timeout = $tinyproxy::params::connection_timeout,
                   $allow = $tinyproxy::params::allow,
                   $errorfiles = $tinyproxy::params::errorfiles,
                   $defaulterrorfile = $tinyproxy::params::defaulterrorfile,
@@ -143,7 +143,7 @@ class tinyproxy ( $ensure = present,
                   $statfile = $tinyproxy::params::statfile,
                   $logfile = $tinyproxy::params::logfile,
                   $syslog = $tinyproxy::params::syslog,
-                  $loglevel = $tinyproxy::params::loglevel,
+                  $log_level = $tinyproxy::params::log_level,
                   $pidfile = $tinyproxy::params::pidfile,
                   $maxclients = $tinyproxy::params::maxclients,
                   $minspareservers = $tinyproxy::params::minspareservers,
@@ -161,12 +161,10 @@ class tinyproxy ( $ensure = present,
                   $connectport = $tinyproxy::params::connectport,
                   $reverseonly = $tinyproxy::params::reverseonly,
                   $reversemagic = $tinyproxy::params::reversemagic,
-                  $config_source = '' ) {
-
-  include tinyproxy::params
+                  $config_source = '' ) inherits tinyproxy::params {
 
   $template = $config_source ? {
-    '' => template("${::lsbdistcodename}_tinyproxy.cfg.erb", 'tinyproxy.cfg.erb'),
+    '' => template('tinyproxy/tinyproxy.conf.erb'),
     default => ''
   }
   $ensure_file = $ensure ? {
@@ -181,10 +179,11 @@ class tinyproxy ( $ensure = present,
         default   => present
       }
       service { $service:
-        ensure    => running,
-        enable    => true,
-        hasstatus => $tinyproxy::params::hasstatus,
-        require   => Package[$package]
+        ensure      => running,
+        enable      => true,
+        hasstatus   => $tinyproxy::params::hasstatus,
+        hasrestart  => $tinyproxy::params::hasrestart,
+        require     => Package[$package]
       }
     }
     absent: {

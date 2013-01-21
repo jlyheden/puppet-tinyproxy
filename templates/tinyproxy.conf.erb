@@ -53,7 +53,7 @@ BindSame <%= bindsame %>
 # Timeout: The maximum number of seconds of inactivity a connection is
 # allowed to have before it is closed by tinyproxy.
 #
-Timeout <%= timeout %>
+Timeout <%= connection_timeout %>
 
 #
 # ErrorFile: Defines the HTML file to send when a given HTTP error
@@ -130,7 +130,7 @@ end -%>
 # LogLevel was set to Warning, then all log messages from Warning to
 # Critical would be output, but Notice and below would be suppressed.
 #
-LogLevel <%= loglevel %>
+LogLevel <%= log_level %>
 
 #
 # PidFile: Write the PID of the main tinyproxy thread to this file so it
@@ -189,7 +189,7 @@ MaxRequestsPerChild <%= maxrequestsperchild %>
 # The order of the controls are important. All incoming connections are
 # tested against the controls based on order.
 #
-<%- if allow.length > 0 && allow.is_a?(Array) -%>
+<%- if allow.length > 0 && allow.is_a?(Array)
 allow.each { |a| -%>
 Allow <%= a %>
 <%- }
