@@ -161,11 +161,11 @@ class tinyproxy ( $ensure = present,
                   $connectport = $tinyproxy::params::connectport,
                   $reverseonly = $tinyproxy::params::reverseonly,
                   $reversemagic = $tinyproxy::params::reversemagic,
-                  $config_source = '' ) inherits tinyproxy::params {
+                  $config_source = undef ) inherits tinyproxy::params {
 
   $template = $config_source ? {
-    '' => template('tinyproxy/tinyproxy.conf.erb'),
-    default => ''
+    undef   => template('tinyproxy/tinyproxy.conf.erb'),
+    default => undef
   }
   $ensure_file = $ensure ? {
     present => file,
