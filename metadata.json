@@ -1,31 +1,34 @@
 {
-  "name": "stanlee-tinyproxy",
-  "author": "Johan Lyheden \u003cjohan@lyheden.com\u003e",
-  "description": "",
-  "license": "",
-  "project_page": "",
-  "source": "",
-  "summary": "",
   "version": "0.0.1",
   "checksums": {
-    "Modulefile": "4676173f0ef48e3ce46d59559dc0808d",
-    "README.markdown": "318963ad244e57456ad16011f82ae083",
-    "Rakefile": "f37e6131fe7de9a49b09d31596f5fbf1",
-    "manifests/header.pp": "7f44559a060a401cedb7d19295bcb0e1",
-    "manifests/init.pp": "96d19b54be5a9310f33a2e6f2497bf77",
-    "manifests/noupstream.pp": "b5d54b5aa10ffc2101b28f49b0bfa0ef",
-    "manifests/params.pp": "7ff9525dafba6af29441747a8357f4e2",
-    "manifests/reversepath.pp": "36e1ff4bd78d270ad9cc00711ab98eca",
-    "manifests/upstream.pp": "f3ac55ec6f49959c27dce1b937f009a3",
-    "spec/spec.opts": "a600ded995d948e393fbe2320ba8e51c",
     "spec/spec_helper.rb": "3ea886dd135e120afa31e0aab12e85b0",
+    "manifests/noupstream.pp": "bd9f8fe74ff36774ae6a9f7b585936ff",
+    "Rakefile": "f37e6131fe7de9a49b09d31596f5fbf1",
+    "Modulefile": "fe454c6ad62b8e63fcf34b4f8b9f9374",
+    "manifests/header.pp": "7f44559a060a401cedb7d19295bcb0e1",
+    "tests/init.pp": "e6023b305bd69adc4d668e843e08be14",
+    "manifests/reversepath.pp": "36e1ff4bd78d270ad9cc00711ab98eca",
+    "manifests/init.pp": "3f308cdce6d1d9e70b3584c2029bd76e",
+    "manifests/params.pp": "32b93b7c6f9e2a3533562caab1cf716f",
+    "README.markdown": "318963ad244e57456ad16011f82ae083",
     "templates/tinyproxy.conf.erb": "2aa2b57fcb933f93e4b7cabcc2f3affd",
-    "tests/init.pp": "e6023b305bd69adc4d668e843e08be14"
+    "spec/spec.opts": "a600ded995d948e393fbe2320ba8e51c",
+    "manifests/upstream.pp": "f3ac55ec6f49959c27dce1b937f009a3"
   },
+  "description": "Puppet module to manage tinyproxy",
+  "project_page": "://github.com/jlyheden/puppet-tinyproxy.git",
+  "summary": "Puppet module to manage tinyproxy",
+  "author": "Johan Lyheden <johan@lyheden.com>",
   "dependencies": [
     {
-      "name": "ripienaar/concat",
-      "version_requirement": "\u003d\u003d0.2.0"
+      "version_requirement": ">=0.2.0",
+      "name": "ripienaar/concat"
     }
-  ]
+  ],
+  "source": "git@github.com:jlyheden/puppet-tinyproxy.git",
+  "types": [
+
+  ],
+  "license": "Apache 2.0 license",
+  "name": "jlyheden-tinyproxy"
 }
