@@ -52,7 +52,7 @@ class tinyproxy::params {
     }
     default: {
       case $::lsbdistcodename {
-        'lucid','precise': {
+        'lucid','precise','trusty': {
           $configfile = '/etc/tinyproxy.conf'
           $package = 'tinyproxy'
           $service = 'tinyproxy'
