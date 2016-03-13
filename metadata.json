@@ -21,8 +21,8 @@
   "author": "Johan Lyheden <johan@lyheden.com>",
   "dependencies": [
     {
-      "version_requirement": ">=0.2.0",
-      "name": "ripienaar/concat"
+      "version_requirement": ">=1.0.0",
+      "name": "puppetlabs/concat"
     }
   ],
   "source": "git@github.com:jlyheden/puppet-tinyproxy.git",
