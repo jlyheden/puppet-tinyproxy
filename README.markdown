@@ -8,7 +8,7 @@ Released under the Apache 2.0 licence
 Dependencies:
 -------------
 
-puppet-concat: https://github.com/ripienaar/puppet-concat
+puppet-concat: https://github.com/puppetlabs/puppet-concat
 
 Usage:
 ------
