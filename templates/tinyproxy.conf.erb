@@ -13,23 +13,23 @@
 # as the root user. Either the user or group name or the UID or GID
 # number may be used.
 #
-User <%= user %>
-Group <%= group %>
+User <%= @user %>
+Group <%= @group %>
 
 #
 # Port: Specify the port which tinyproxy will listen on.  Please note
 # that should you choose to run on a port lower than 1024 you will need
 # to start tinyproxy using root.
 #
-Port <%= port %>
+Port <%= @port %>
 
 #
 # Listen: If you have multiple interfaces this allows you to bind to
 # only one. If this is commented out, tinyproxy will bind to all
 # interfaces present.
 #
-<%- if listen != :undef -%>
-Listen <%= listen %>
+<%- if @listen != :undef -%>
+Listen <%= @listen %>
 <%- end -%>
 
 #
@@ -37,23 +37,23 @@ Listen <%= listen %>
 # outgoing connections.  This is useful for multi-home'd machines where
 # you want all traffic to appear outgoing from one particular interface.
 #
-<%- if bind != :undef -%>
-Bind <%= bind %>
+<%- if @bind != :undef -%>
+Bind <%= @bind %>
 <%- end -%>
 
 #
 # BindSame: If enabled, tinyproxy will bind the outgoing connection to the
 # ip address of the incoming connection.
 #
-<%- if bindsame != :undef -%>
-BindSame <%= bindsame %>
+<%- if @bindsame != :undef -%>
+BindSame <%= @bindsame %>
 <%- end -%>
 
 #
 # Timeout: The maximum number of seconds of inactivity a connection is
 # allowed to have before it is closed by tinyproxy.
 #
-Timeout <%= connection_timeout %>
+Timeout <%= @connection_timeout %>
 
 #
 # ErrorFile: Defines the HTML file to send when a given HTTP error
@@ -63,8 +63,8 @@ Timeout <%= connection_timeout %>
 #   /usr/share/tinyproxy
 #   /etc/tinyproxy
 #
-<%- if errorfiles.length > 0 && errorfiles.is_a?(Hash)
-errorfiles.each_pair { |k,v| -%>
+<%- if @errorfiles.length > 0 && @errorfiles.is_a?(Hash)
+@errorfiles.each_pair { |k,v| -%>
 ErrorFile <%= k %> "<%= v %>"
 <%- }
 end -%>
@@ -74,7 +74,7 @@ end -%>
 # HTML file defined with an ErrorFile keyword for the HTTP error
 # that has occured.
 #
-DefaultErrorFile "<%= defaulterrorfile %>"
+DefaultErrorFile "<%= @defaulterrorfile %>"
 
 #
 # StatHost: This configures the host name or IP address that is treated
@@ -83,8 +83,8 @@ DefaultErrorFile "<%= defaulterrorfile %>"
 # forwarding the request to that host.  The default value of StatHost is
 # tinyproxy.stats.
 #
-<%- if stathost != :undef -%>
-StatHost "<%= stathost %>"
+<%- if @stathost != :undef -%>
+StatHost "<%= @stathost %>"
 <%- end -%>
 
 #
@@ -92,17 +92,17 @@ StatHost "<%= stathost %>"
 # for the stathost.  If this file doesn't exist a basic page is
 # hardcoded in tinyproxy.
 #
-StatFile "<%= statfile %>"
+StatFile "<%= @statfile %>"
 
 #
 # Syslog: Tell tinyproxy to use syslog instead of a logfile.  This
 # option must not be enabled if the Logfile directive is being used.
 # These two directives are mutually exclusive.
 #
-<%- if syslog != :undef && ![TrueClass,FalseClass].index(syslog.class).nil?
-if syslog == true -%>
+<%- if @syslog != :undef && ![TrueClass,FalseClass].index(@syslog.class).nil?
+if @syslog == true -%>
 Syslog On
-<%- elsif syslog == false -%>
+<%- elsif @syslog == false -%>
 Syslog Off
 
 #
@@ -111,7 +111,7 @@ Syslog Off
 # and enable the Syslog directive.  These directives are mutually
 # exclusive.
 #
-Logfile "<%= logfile %>"
+Logfile "<%= @logfile %>"
 <%- end
 end -%>
 
@@ -130,22 +130,22 @@ end -%>
 # LogLevel was set to Warning, then all log messages from Warning to
 # Critical would be output, but Notice and below would be suppressed.
 #
-LogLevel <%= log_level %>
+LogLevel <%= @log_level %>
 
 #
 # PidFile: Write the PID of the main tinyproxy thread to this file so it
 # can be used for signalling purposes.
 #
-PidFile "<%= pidfile %>"
+PidFile "<%= @pidfile %>"
 
 #
 # XTinyproxy: Tell Tinyproxy to include the X-Tinyproxy header, which
 # contains the client's IP address.
 #
-<%- if xtinyproxy != :undef && ![TrueClass,FalseClass].index(xtinyproxy.class).nil?
-if xtinyproxy == true -%>
+<%- if @xtinyproxy != :undef && ![TrueClass,FalseClass].index(@xtinyproxy.class).nil?
+if @xtinyproxy == true -%>
 XTinyproxy Yes
-<%- elsif xtinyproxy == false -%>
+<%- elsif @xtinyproxy == false -%>
 XTinyproxy No
 <%- end
 end -%>
@@ -155,7 +155,7 @@ end -%>
 # be created. In other words, only MaxClients number of clients can be
 # connected at the same time.
 #
-MaxClients <%= maxclients %>
+MaxClients <%= @maxclients %>
 
 #
 # MinSpareServers/MaxSpareServers: These settings set the upper and
@@ -165,13 +165,13 @@ MaxClients <%= maxclients %>
 # server processes will be spawned.  If the number of servers exceeds
 # MaxSpareServers then the extras will be killed off.
 #
-MinSpareServers <%= minspareservers %>
-MaxSpareServers <%= maxspareservers %>
+MinSpareServers <%= @minspareservers %>
+MaxSpareServers <%= @maxspareservers %>
 
 #
 # StartServers: The number of servers to start initially.
 #
-StartServers <%= startservers %>
+StartServers <%= @startservers %>
 
 #
 # MaxRequestsPerChild: The number of connections a thread will handle
@@ -179,7 +179,7 @@ StartServers <%= startservers %>
 # disables thread reaping. If you do notice problems with memory
 # leakage, then set this to something like 10000.
 #
-MaxRequestsPerChild <%= maxrequestsperchild %>
+MaxRequestsPerChild <%= @maxrequestsperchild %>
 
 #
 # Allow: Customization of authorization controls. If there are any
@@ -189,8 +189,8 @@ MaxRequestsPerChild <%= maxrequestsperchild %>
 # The order of the controls are important. All incoming connections are
 # tested against the controls based on order.
 #
-<%- if allow.length > 0 && allow.is_a?(Array)
-allow.each { |a| -%>
+<%- if @allow.length > 0 && @allow.is_a?(Array)
+@allow.each { |a| -%>
 Allow <%= a %>
 <%- }
 end -%>
@@ -201,7 +201,7 @@ end -%>
 # is enabled, the string supplied will be used as the host name in the
 # Via header; otherwise, the server's host name will be used.
 #
-ViaProxyName "<%= viaproxyname %>"
+ViaProxyName "<%= @viaproxyname %>"
 
 #
 # DisableViaHeader: When this is set to yes, Tinyproxy does NOT add
@@ -210,10 +210,10 @@ ViaProxyName "<%= viaproxyname %>"
 # header, so by enabling this option, you break compliance.
 # Don't disable the Via header unless you know what you are doing...
 #
-<%- if disableviaheader != :undef && ![TrueClass,FalseClass].index(disableviaheader.class).nil?
-if disableviaheader == true -%>
+<%- if @disableviaheader != :undef && ![TrueClass,FalseClass].index(@disableviaheader.class).nil?
+if @disableviaheader == true -%>
 DisableViaHeader Yes
-<%- elsif disableviaheader == false -%>
+<%- elsif @disableviaheader == false -%>
 DisableViaHeader No
 <%- end
 end -%>
@@ -221,17 +221,17 @@ end -%>
 #
 # Filter: This allows you to specify the location of the filter file.
 #
-<%- if filter != :undef -%>
-Filter "<%= filter %>"
+<%- if @filter != :undef -%>
+Filter "<%= @filter %>"
 <%- end -%>
 
 #
 # FilterURLs: Filter based on URLs rather than domains.
 #
-<%- if filterurls != :undef && ![TrueClass,FalseClass].index(filterurls.class).nil?
-if filterurls == true -%>
+<%- if @filterurls != :undef && ![TrueClass,FalseClass].index(@filterurls.class).nil?
+if @filterurls == true -%>
 FilterURLs On
-<%- elsif filterurls == false -%>
+<%- elsif @filterurls == false -%>
 FilterURLs Off
 <%- end
 end -%>
@@ -240,10 +240,10 @@ end -%>
 # FilterExtended: Use POSIX Extended regular expressions rather than
 # basic.
 #
-<%- if filterextended != :undef && ![TrueClass,FalseClass].index(filterextended.class).nil?
-if filterextended == true -%>
+<%- if @filterextended != :undef && ![TrueClass,FalseClass].index(@filterextended.class).nil?
+if @filterextended == true -%>
 FilterExtended On
-<%- elsif filterextended == false -%>
+<%- elsif @filterextended == false -%>
 FilterExtended Off
 <%- end
 end -%>
@@ -251,10 +251,10 @@ end -%>
 #
 # FilterCaseSensitive: Use case sensitive regular expressions.
 #
-<%- if filtercasesensitive != :undef && ![TrueClass,FalseClass].index(filtercasesensitive.class).nil?
-if filtercasesensitive == true -%>
+<%- if @filtercasesensitive != :undef && ![TrueClass,FalseClass].index(@filtercasesensitive.class).nil?
+if @filtercasesensitive == true -%>
 FilterCaseSensitive On
-<%- elsif filtercasesensitive == false -%>
+<%- elsif @filtercasesensitive == false -%>
 FilterCaseSensitive Off
 <%- end
 end -%>
@@ -269,10 +269,10 @@ end -%>
 # to deny everything which is _not_ specifically allowed by the filter
 # file.
 #
-<%- if filterdefaultdeny != :undef && ![TrueClass,FalseClass].index(filterdefaultdeny.class).nil?
-if filterdefaultdeny == true -%>
+<%- if @filterdefaultdeny != :undef && ![TrueClass,FalseClass].index(@filterdefaultdeny.class).nil?
+if @filterdefaultdeny == true -%>
 FilterDefaultDeny Yes
-<%- elsif filterdefaultdeny == false -%>
+<%- elsif @filterdefaultdeny == false -%>
 FilterDefaultDeny No
 <%- end
 end -%>
@@ -286,8 +286,8 @@ end -%>
 # Most sites require cookies to be enabled for them to work correctly, so
 # you will need to allow Cookies through if you access those sites.
 #
-<%- if anonymous.is_a?(Array)
-anonymous.each { |h| -%>
+<%- if @anonymous.is_a?(Array)
+@anonymous.each { |h| -%>
 Anonymous "<%= h %>"
 <%- }
 end -%>
@@ -299,8 +299,8 @@ end -%>
 # the value to 0.  If no ConnectPort line is found, all ports are
 # allowed (which is not very secure.)
 #
-<%- if connectport.is_a?(Array)
-connectport.each { |p| -%>
+<%- if @connectport.is_a?(Array)
+@connectport.each { |p| -%>
 ConnectPort <%= p %>
 <%- }
 end -%>
@@ -309,10 +309,10 @@ end -%>
 # When using tinyproxy as a reverse proxy, it is STRONGLY recommended
 # that the normal proxy is turned off by uncommenting the next directive.
 #
-<%- if reverseonly != :undef && ![TrueClass,FalseClass].index(reverseonly.class).nil?
-if reverseonly == true -%>
+<%- if @reverseonly != :undef && ![TrueClass,FalseClass].index(@reverseonly.class).nil?
+if @reverseonly == true -%>
 ReverseOnly Yes
-<%- elsif reverseonly == false -%>
+<%- elsif @reverseonly == false -%>
 ReverseOnly No
 <%- end
 end -%>
@@ -321,10 +321,10 @@ end -%>
 # Use a cookie to track reverse proxy mappings. If you need to reverse
 # proxy sites which have absolute links you must uncomment this.
 #
-<%- if reversemagic != :undef && ![TrueClass,FalseClass].index(reversemagic.class).nil?
-if reversemagic == true -%>
+<%- if @reversemagic != :undef && ![TrueClass,FalseClass].index(@reversemagic.class).nil?
+if @reversemagic == true -%>
 ReverseMagic Yes
-<%- elsif reversemagic == false -%>
+<%- elsif @reversemagic == false -%>
 ReverseMagic No
 <%- end
 end -%>
@@ -337,6 +337,6 @@ end -%>
 #
 # If not set then no rewriting occurs.
 #
-<%- if reversebaseurl != :undef -%>
-ReverseBaseURL "<%= reversebaseurl %>"
+<%- if @reversebaseurl != :undef -%>
+ReverseBaseURL "<%= @reversebaseurl %>"
 <%- end -%>
